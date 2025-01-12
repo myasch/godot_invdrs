@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7q8nv6k7pj8y"]
+
+[ext_resource type="Script" path="res://main/main.gd" id="1_dhu35"]
+[ext_resource type="Texture2D" uid="uid://dv7gr1c2y3tw7" path="res://main/bg.png" id="2_mjqrm"]
+[ext_resource type="PackedScene" uid="uid://cqmqlijdsh02f" path="res://hero/hero.tscn" id="2_pge4r"]
+
+[sub_resource type="Curve2D" id="Curve2D_t524j"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 64, 64, 0, 0, 0, 0, 1216, 64, 0, 0, 0, 0, 1216, 128, 0, 0, 0, 0, 64, 128, 0, 0, 0, 0, 64, 192, 0, 0, 0, 0, 1216, 192, 0, 0, 0, 0, 1216, 256, 0, 0, 0, 0, 64, 256, 0, 0, 0, 0, 64, 320, 0, 0, 0, 0, 1216, 320, 0, 0, 0, 0, 1216, 384, 0, 0, 0, 0, 64, 384, 0, 0, 0, 0, 64, 448, 0, 0, 0, 0, 1216, 448)
+}
+point_count = 14
+
+[node name="main" type="Node"]
+script = ExtResource("1_dhu35")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_mjqrm")
+
+[node name="hero" parent="." instance=ExtResource("2_pge4r")]
+position = Vector2(640, 656)
+
+[node name="enemyPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_t524j")

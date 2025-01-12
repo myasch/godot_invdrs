@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqmqlijdsh02f"]
+
+[ext_resource type="Script" path="res://hero/hero.gd" id="1_2rimt"]
+[ext_resource type="Texture2D" uid="uid://ctaaq7pc638j7" path="res://hero/hero.png" id="1_a5fdy"]
+
+[node name="hero" type="Area2D"]
+script = ExtResource("1_2rimt")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_a5fdy")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-1, -32, 1, -32, 2, -28, 27, -4, 28, 16, 30, 17, 30, 24, 32, 24, 29, 31, 24, 24, 22, 24, 22, 16, 19, 17, 19, 9, -20, 9, -19, 16, -21, 17, -21, 24, -24, 24, -27, 31, -32, 24, -29, 24, -29, 16, -27, 17, -28, -4, -2, -29)

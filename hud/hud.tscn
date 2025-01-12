@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://ck5j34et6kg4v"]
+
+[ext_resource type="Script" path="res://hud/hud.gd" id="1_cqvvq"]
+[ext_resource type="Texture2D" uid="uid://dvqpvaololek2" path="res://hud/heart.png" id="2_wciv0"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_i2xqw"]
+action = &"shoot"
+
+[sub_resource type="Shortcut" id="Shortcut_olwh8"]
+events = [SubResource("InputEventAction_i2xqw")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_wg4ai"]
+action = &"exit"
+
+[sub_resource type="Shortcut" id="Shortcut_tciqs"]
+events = [SubResource("InputEventAction_wg4ai")]
+
+[node name="hud" type="CanvasLayer"]
+script = ExtResource("1_cqvvq")
+
+[node name="scoreLabel" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="menu" type="FlowContainer" parent="."]
+visible = false
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.0
+offset_right = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+vertical = true
+
+[node name="menuLabel" type="Label" parent="menu"]
+layout_mode = 2
+text = "You dided
+"
+
+[node name="restartButton" type="Button" parent="menu"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_olwh8")
+text = "Restart"
+
+[node name="exitButton" type="Button" parent="menu"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_tciqs")
+text = "exit"
+
+[node name="lives" type="BoxContainer" parent="."]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 128.0
+grow_vertical = 0
+
+[node name="heartIconTextRect" type="TextureRect" parent="lives"]
+layout_mode = 2
+texture = ExtResource("2_wciv0")
+
+[node name="livesCountLabel" type="Label" parent="lives"]
+layout_mode = 2
+text = "x3"
+
+[connection signal="pressed" from="menu/restartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="menu/exitButton" to="." method="_on_exit_button_pressed"]
