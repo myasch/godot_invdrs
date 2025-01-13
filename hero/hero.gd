@@ -3,13 +3,14 @@ extends Area2D
 
 signal died;
 signal gotHeart;
+signal gotFireRateUp;
 
 const default_sprite := preload("res://hero/hero.png")
 const broken_sprite := preload("res://hero/hero_dead.png")
 const bullet := preload("res://bullet/bullet.tscn")
 const InitialPosition = Vector2(640, 656)
 
-var isDied = true;
+var isDied := true;
 
 var main : Main
 
@@ -37,7 +38,7 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_pressed("shoot"):
 		var currentTime := Time.get_ticks_msec()
-		if (!lastShotTimestamp) or ((currentTime - lastShotTimestamp) > 1000):
+		if (!lastShotTimestamp) or ((currentTime - lastShotTimestamp) > Stats.fireCooldown):
 			var bulletPos = position
 			bulletPos.y -= 48
 			
@@ -48,8 +49,8 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group('bullets'):
-		main.lives -= 1
-		if main.lives == 0:
+		Stats.lives -= 1
+		if Stats.lives == 0:
 			isDied = true
 			hide()
 			$CollisionPolygon2D.disabled = true
@@ -62,9 +63,12 @@ func _on_area_entered(area: Area2D) -> void:
 		var drop : Drop = area
 		if (drop.type == drop.DROP_TYPE.HEART):
 			gotHeart.emit()
+		elif (drop.type == drop.DROP_TYPE.FIRE_SPEED_UP):
+			gotFireRateUp.emit()
 
 func start() -> void:
 	isDied = false;
 	show()
+	Stats.fireCooldown = Stats.InitialFire
 	$CollisionPolygon2D.disabled = false
 	position = InitialPosition

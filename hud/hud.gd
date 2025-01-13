@@ -35,6 +35,12 @@ func update_score(score: int) -> void:
 
 func update_lives(amount: int) -> void:
 	$lives/livesCountLabel.text = 'x' + str(amount);
+	
+func update_fire_rate(rate: int) -> void:
+	$lives/fireRateLabel.text = str(float(rate) / 1000)
+	
+func update_level(level: int) -> void:
+	$levelContainer/levelText.text = str(level)
 
 func _on_restart_button_pressed() -> void:
 	start.emit()

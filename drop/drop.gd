@@ -3,8 +3,9 @@ class_name Drop
 @export var speed := 200
 
 const heartTexture := preload("res://hud/heart.png")
+const fireSpeedUpTexture := preload("res://drop/speed_up.png")
 
-enum DROP_TYPE {HEART}
+enum DROP_TYPE {HEART, FIRE_SPEED_UP}
 
 var type : DROP_TYPE = DROP_TYPE.HEART;
 
@@ -21,8 +22,10 @@ func start(_position: Vector2) -> void:
 	match type:
 		DROP_TYPE.HEART:
 			$dropTexture.texture = heartTexture
+		DROP_TYPE.FIRE_SPEED_UP:
+			$dropTexture.texture = fireSpeedUpTexture
 	position = _position
-
+	
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 

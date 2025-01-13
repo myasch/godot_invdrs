@@ -25,6 +25,7 @@ wait_time = 0.5
 [node name="hud" parent="." instance=ExtResource("4_1gily")]
 
 [connection signal="died" from="hero" to="." method="_on_hero_died"]
+[connection signal="gotFireRateUp" from="hero" to="." method="_on_hero_got_fire_rate_up"]
 [connection signal="gotHeart" from="hero" to="." method="_on_hero_got_heart"]
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="start" from="hud" to="." method="_on_hud_start"]

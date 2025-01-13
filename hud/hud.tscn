@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ck5j34et6kg4v"]
+[gd_scene load_steps=8 format=3 uid="uid://ck5j34et6kg4v"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_cqvvq"]
 [ext_resource type="Texture2D" uid="uid://dvqpvaololek2" path="res://hud/heart.png" id="2_wciv0"]
+[ext_resource type="Texture2D" uid="uid://xh77v5anikmj" path="res://drop/speed_up.png" id="3_vfuio"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_i2xqw"]
 action = &"shoot"
@@ -63,16 +64,38 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -40.0
-offset_right = 128.0
+offset_right = 320.0
 grow_vertical = 0
 
 [node name="heartIconTextRect" type="TextureRect" parent="lives"]
 layout_mode = 2
 texture = ExtResource("2_wciv0")
+expand_mode = 3
 
 [node name="livesCountLabel" type="Label" parent="lives"]
 layout_mode = 2
 text = "x3"
+
+[node name="fireRateIcon" type="TextureRect" parent="lives"]
+layout_mode = 2
+texture = ExtResource("3_vfuio")
+expand_mode = 2
+
+[node name="fireRateLabel" type="Label" parent="lives"]
+layout_mode = 2
+text = "1"
+
+[node name="levelContainer" type="HFlowContainer" parent="."]
+offset_right = 256.0
+offset_bottom = 24.0
+
+[node name="levelStaticText" type="Label" parent="levelContainer"]
+layout_mode = 2
+text = "level: "
+
+[node name="levelText" type="Label" parent="levelContainer"]
+layout_mode = 2
+text = "1"
 
 [connection signal="pressed" from="menu/restartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="menu/exitButton" to="." method="_on_exit_button_pressed"]

@@ -31,8 +31,8 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if randi_range(0, 99) < 10:
-		var instDrop : Drop = drop.instantiate()		
+		var instDrop : Drop = drop.instantiate()
 		get_parent().add_child(instDrop)
 		instDrop.start(position)
-	died.emit()
 	queue_free()
+	died.emit()
