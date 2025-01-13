@@ -35,8 +35,6 @@ func _on_invader_died() -> void:
 	Stats.score += 1
 	$hud.update_score(Stats.score)
 	var invaders := get_tree().get_nodes_in_group("invaders")
-	print(invaders)
-	print(invaders.reduce(func(it): it.is_queued_for_deletion()))
 	if len(invaders.filter(func(it): return isNodeNotFreed(it) and is_instance_valid(it) and !it.is_queued_for_deletion())) == 0:
 		Stats.level += 1
 		$hud.update_level(Stats.level);
