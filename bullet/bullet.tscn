@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgt0ntw0vsvci"]
+[gd_scene load_steps=3 format=3 uid="uid://cgt0ntw0vsvci"]
 
 [ext_resource type="Script" path="res://bullet/bullet.gd" id="1_erypt"]
+[ext_resource type="Texture2D" uid="uid://cdq7mgxkaa8dr" path="res://shaders/2d_lights_and_shadows_neutral_point_light.webp" id="2_4f2vd"]
 
 [node name="bullet" type="Area2D" groups=["bullets"]]
 collision_layer = 4
@@ -13,6 +14,11 @@ speed = 800
 polygon = PackedVector2Array(2, -12, -2, -12, -6, -8, -6, 12, 6, 12, 6, -7)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 2.0
+texture = ExtResource("2_4f2vd")
+texture_scale = 0.33
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

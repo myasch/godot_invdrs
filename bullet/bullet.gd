@@ -17,11 +17,13 @@ func start(pos: Vector2, _isOwn: bool) -> void:
 		collision_layer = 16
 		collision_mask = 2
 		$bulletSprite.texture = ownSprite
+		$PointLight2D.color = Color('#FF63E7')
 	else:
 		collision_layer = 8
 		collision_mask = 1
 		$bulletSprite.texture = enemySprite
 		$bulletSprite.flip_v = true
+		$PointLight2D.color = Color('#70FFFF')
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

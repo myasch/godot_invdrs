@@ -1,14 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7q8nv6k7pj8y"]
+[gd_scene load_steps=8 format=3 uid="uid://b7q8nv6k7pj8y"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_dhu35"]
+[ext_resource type="Shader" uid="uid://dp45xid3eqhq6" path="res://shaders/new_shader.tres" id="2_7hg5i"]
 [ext_resource type="Texture2D" uid="uid://dv7gr1c2y3tw7" path="res://main/bg.png" id="2_mjqrm"]
 [ext_resource type="PackedScene" uid="uid://cqmqlijdsh02f" path="res://hero/hero.tscn" id="2_pge4r"]
 [ext_resource type="PackedScene" uid="uid://ck5j34et6kg4v" path="res://hud/hud.tscn" id="4_1gily"]
+[ext_resource type="Texture2D" uid="uid://cdq7mgxkaa8dr" path="res://shaders/2d_lights_and_shadows_neutral_point_light.webp" id="5_ujyro"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_um4ib"]
+shader = ExtResource("2_7hg5i")
 
 [node name="main" type="Node"]
 script = ExtResource("1_dhu35")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_um4ib")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,6 +29,15 @@ position = Vector2(640, 656)
 wait_time = 0.5
 
 [node name="hud" parent="." instance=ExtResource("4_1gily")]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(640, 688)
+color = Color(0.427451, 0.247059, 0.654902, 1)
+energy = 4.0
+shadow_color = Color(0, 1, 0, 1)
+shadow_filter_smooth = 64.0
+texture = ExtResource("5_ujyro")
+texture_scale = 5.0
 
 [connection signal="died" from="hero" to="." method="_on_hero_died"]
 [connection signal="gotFireRateUp" from="hero" to="." method="_on_hero_got_fire_rate_up"]

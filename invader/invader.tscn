@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxfi3s5k5skor"]
+[gd_scene load_steps=4 format=3 uid="uid://cxfi3s5k5skor"]
 
 [ext_resource type="Script" path="res://invader/invader.gd" id="1_o41ti"]
+[ext_resource type="Texture2D" uid="uid://cdq7mgxkaa8dr" path="res://shaders/2d_lights_and_shadows_neutral_point_light.webp" id="2_hlo03"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r4px3"]
 size = Vector2(32, 32)
@@ -14,5 +15,10 @@ script = ExtResource("1_o41ti")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_r4px3")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.113725, 0.145098, 1)
+texture = ExtResource("2_hlo03")
+texture_scale = 0.5
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
